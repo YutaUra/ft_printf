@@ -6,7 +6,7 @@
 #    By: yura <yura@student.42tokyo.jp>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/23 20:15:13 by yura              #+#    #+#              #
-#    Updated: 2020/09/30 03:49:03 by yura             ###   ########.fr        #
+#    Updated: 2020/09/30 21:20:22 by yura             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,27 +14,28 @@ CC := gcc
 # CFLAGS := -Wall -Wextra -Werror
 
 NAME := libftprintf.a
-SRCS := ft_printf.c utils.c
+SRCS := ft_printf.c flag_helper.c parse_helper.c print_helper.c print1.c print2.c utils.c 
 OBJS := ${SRCS:%.c=%.o}
-LIBFT := ./libft
+LIBFT_DIR := ./libft
+LIBFT := ${LIBFT_DIR}/libft.a
 
 
-all: ${LIBFT} ${NAME}
+all: ${NAME}
 
 ${LIBFT}:
-	${MAKE} -C ${LIBFT}
-	cp ${LIBFT}/libft.a ${NAME}
+	${MAKE}  -C ${LIBFT_DIR}
+	cp ${LIBFT} ${NAME}
 
-${NAME}: ${OBJS}
+${NAME}: ${LIBFT} ${OBJS}
 	ar rcs ${NAME} ${OBJS}
 
 clean:
 	${RM} ${OBJS}
-	${MAKE} clean -C ${LIBFT}
+	${MAKE} clean -C ${LIBFT_DIR}
 
 fclean:
 	${RM} ${NAME} ${OBJS}
-	${MAKE} fclean -C ${LIBFT}
+	${MAKE} fclean -C ${LIBFT_DIR}
 
 re: fclean all
 
