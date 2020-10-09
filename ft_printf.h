@@ -54,7 +54,7 @@ int				print_c(va_list *args, t_flag *flag);
 int				print_s(va_list *args, t_flag *flag);
 int				print_di(va_list *args, t_flag *flag);
 int				print_u(va_list *args, t_flag *flag);
-int				print_px(va_list *args, t_flag *flag);
+int				print_x(va_list *args, t_flag *flag);
 
 /*
 **  print2.c

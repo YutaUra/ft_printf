@@ -25,7 +25,7 @@ int	print_value(va_list *args, t_flag *flag)
 	if (flag->conversion == 'p')
 		return (print_p(args, flag));
 	if (ft_strchr("xX", flag->conversion))
-		return (print_px(args, flag));
+		return (print_x(args, flag));
 	if (flag->conversion == '%')
 		return (print_modulo(flag));
 	return (0);
