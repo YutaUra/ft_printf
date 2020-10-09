@@ -11,13 +11,14 @@
 # **************************************************************************** #
 
 CC := gcc
-# CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror
 
 NAME := libftprintf.a
 SRCS := ft_printf.c flag_helper.c parse_helper.c print_helper.c print1.c print2.c utils.c 
 OBJS := ${SRCS:%.c=%.o}
 LIBFT_DIR := ./libft
 LIBFT := ${LIBFT_DIR}/libft.a
+ARGS := 
 
 
 all: ${NAME}
@@ -40,8 +41,8 @@ fclean:
 re: fclean all
 
 test: ${NAME}
-	gcc ${NAME} main.c
-	./a.out
+	gcc -Wformat=0 ${NAME} main.c
+	./a.out ${ARGS}
 
 
 bonus:

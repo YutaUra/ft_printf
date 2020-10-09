@@ -47,14 +47,8 @@ char			*char_repeat_join(char c, int repeat, char *str)
 	if (!(buf = (char*)malloc(sizeof(char) * (repeat + ft_strlen(str) + 1))))
 		return (NULL);
 	i = 0;
-	while (i < repeat)
-		buf[i++] = c;
-	while (str[i - repeat] != '\0')
-	{
-		buf[i] = str[i - repeat];
-		i++;
-	}
-	buf[i] = '\0';
+	ft_memset(buf, c, repeat);
+	ft_strlcpy(buf + repeat, str, ft_strlen(str) + 1);
 	return (buf);
 }
 
@@ -87,7 +81,7 @@ char			*ft_utohex(size_t nb, int upper)
 	hex = "0123456789abcdef";
 	upper_hex = "0123456789ABCDEF";
 	digits = count_digits(nb, 16);
-	if (!(buf = (char *)malloc(sizeof(char) * (digits + 1))))
+	if ((buf = (char *)malloc(sizeof(char) * (digits + 1))) == NULL)
 		return (NULL);
 	buf[digits--] = '\0';
 	if (nb == 0)

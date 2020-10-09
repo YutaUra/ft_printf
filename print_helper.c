@@ -40,7 +40,6 @@ static int	print_number2(char *str, t_flag *flag, int minus)
 
 int			print_number(char *str, t_flag *flag, int minus)
 {
-	int		cnt;
 	char	*temp;
 
 	if (flag->precision == 0 && str[0] == '0')

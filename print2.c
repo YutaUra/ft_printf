@@ -22,7 +22,9 @@ int	print_value(va_list *args, t_flag *flag)
 		return (print_di(args, flag));
 	if (flag->conversion == 'u')
 		return (print_u(args, flag));
-	if (ft_strchr("pxX", flag->conversion))
+	if (flag->conversion == 'p')
+		return (print_p(args, flag));
+	if (ft_strchr("xX", flag->conversion))
 		return (print_px(args, flag));
 	if (flag->conversion == '%')
 		return (print_modulo(flag));
@@ -44,6 +46,30 @@ int	print_modulo(t_flag *flag)
 	return (flag->min_width > 0 ? flag->min_width : 1);
 }
 
+int	print_p(va_list *args, t_flag *flag)
+{
+	size_t	num;
+	ssize_t len;
+	char	*str;
+	char	*temp;
+	int		cnt;
+
+	num = (size_t)va_arg(*args, void *);
+	temp = (num == 0 && flag->precision == 0) ? ft_strdup("") : ft_utohex(num, 0);
+	len = ft_strlen(temp);
+	if (flag->precision > len)
+	{
+		str = char_repeat_join('0', flag->precision - len, temp);
+		free(temp);
+		temp = str;
+	}
+	str = ft_strjoin("0x", temp);
+	free(temp);
+	cnt = print_string(str, flag);
+	free(str);
+	return (cnt);
+}
+
 int	print_string(char *str, t_flag *flag)
 {
 	size_t len;
@@ -59,5 +85,5 @@ int	print_string(char *str, t_flag *flag)
 		put_str_repeat((flag->zero_padding ? '0' : ' '), flag->min_width - len);
 		ft_putstr_fd(str, 1);
 	}
-	return (flag->min_width > len ? flag->min_width : len);
+	return (flag->min_width > (int)len ? flag->min_width : len);
 }

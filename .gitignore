@@ -1,2 +1,7 @@
 pft/
 main.c
+pft_2019/
+**/*.o
+a.out
+a.out.dSYM
+**/*.a

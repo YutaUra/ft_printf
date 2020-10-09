@@ -28,7 +28,8 @@ void	parse_format(const char **src, va_list *args, t_flag *flag)
 		parse_precision(src, args, flag);
 	flag->zero_padding = (flag->left_align ? 0 : flag->zero_padding);
 	flag->conversion = **src;
-	(*src)++;
+	if (flag->conversion != '\0')
+		(*src)++;
 }
 
 void	parse_precision(const char **src, va_list *args, t_flag *flag)

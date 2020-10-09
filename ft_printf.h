@@ -61,6 +61,7 @@ int				print_px(va_list *args, t_flag *flag);
 */
 int				print_value(va_list *args, t_flag *flag);
 int				print_modulo(t_flag *flag);
+int				print_p(va_list *args, t_flag *flag);
 int				print_string(char *str, t_flag *flag);
 
 /*

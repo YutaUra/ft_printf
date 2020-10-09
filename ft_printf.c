@@ -6,7 +6,7 @@
 /*   By: yura <yura@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/23 20:40:41 by yura              #+#    #+#             */
-/*   Updated: 2020/09/30 21:41:33 by yura             ###   ########.fr       */
+/*   Updated: 2020/10/02 22:34:35 by yura             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@
 **        [.precision][length modifier][conversions]
 **
 **      flag
-**        - left alignment
-**        0 zero padding
+**        - A minus sign `-' which specifies left adjustment of the output in the indicated field;
+**        0 A zero `0' character indicating that zero-padding should be used rather than blank-padding.
+**          A `-' overrides a `0' if both are used;
 **
-**      length modifier (not need)
+**      length modifier (only bonus)
 **        hh
 **        h
 **        l
@@ -111,6 +112,7 @@ static int	ft_printf_main(const char *src, t_flag *flag, va_list *args)
 {
 	int	cnt;
 
+	cnt = 0;
 	while (*src)
 	{
 		if (*src == '%')
@@ -118,6 +120,8 @@ static int	ft_printf_main(const char *src, t_flag *flag, va_list *args)
 			initialize_flag(flag);
 			src++;
 			parse_format(&src, args, flag);
+			if (flag->conversion == '\0')
+				return (cnt);
 			cnt += print_value(args, flag);
 		}
 		else
