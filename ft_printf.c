@@ -20,8 +20,10 @@
 **        [.precision][length modifier][conversions]
 **
 **      flag
-**        - A minus sign `-' which specifies left adjustment of the output in the indicated field;
-**        0 A zero `0' character indicating that zero-padding should be used rather than blank-padding.
+**        - A minus sign `-' which specifies left adjustment
+**          of the output in the indicated field;
+**        0 A zero `0' character indicating that zero-padding
+**          should be used rather than blank-padding.
 **          A `-' overrides a `0' if both are used;
 **
 **      length modifier (only bonus)

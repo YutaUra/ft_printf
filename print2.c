@@ -55,7 +55,8 @@ int	print_p(va_list *args, t_flag *flag)
 	int		cnt;
 
 	num = (size_t)va_arg(*args, void *);
-	temp = (num == 0 && flag->precision == 0) ? ft_strdup("") : ft_utohex(num, 0);
+	temp = (num == 0 && flag->precision == 0)
+			? ft_strdup("") : ft_utohex(num, 0);
 	len = ft_strlen(temp);
 	if (flag->precision > len)
 	{
