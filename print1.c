@@ -60,9 +60,15 @@ int	print_di(va_list *args, t_flag *flag)
 
 	num = (long)va_arg(*args, int);
 	if (num == INT_MIN)
-		str = ft_strdup("2147483648");
+	{
+		if ((str = ft_strdup("2147483648")) == NULL)
+			return (-1);
+	}
 	else
-		str = ft_itoa(num > 0 ? num : -num);
+	{
+		if ((str = ft_itoa(num > 0 ? num : -num)) == NULL)
+			return (-1);
+	}
 	return (print_number(str, flag, num < 0 ? 1 : 0));
 }
 

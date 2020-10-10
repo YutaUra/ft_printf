@@ -23,6 +23,8 @@ static int	print_number2(char *str, t_flag *flag, int minus)
 		temp = char_repeat_join('0',
 			flag->min_width - (int)ft_strlen(str) - minus, str);
 		free(str);
+		if (temp == NULL)
+			return (-1);
 		str = temp;
 	}
 	else if (flag->zero_padding)
@@ -31,6 +33,8 @@ static int	print_number2(char *str, t_flag *flag, int minus)
 	{
 		temp = ft_strjoin("-", str);
 		free(str);
+		if (temp == NULL)
+			return (-1);
 		str = temp;
 	}
 	cnt = print_string(str, flag);
@@ -52,6 +56,8 @@ int			print_number(char *str, t_flag *flag, int minus)
 		temp = char_repeat_join('0',
 			flag->precision - (int)ft_strlen(str), str);
 		free(str);
+		if (temp == NULL)
+			return (-1);
 		str = temp;
 	}
 	if (flag->zero_padding && flag->precision != -1
