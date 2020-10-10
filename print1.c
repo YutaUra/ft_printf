@@ -78,7 +78,8 @@ int	print_u(va_list *args, t_flag *flag)
 	char			*str;
 
 	num = va_arg(*args, unsigned int);
-	str = ft_uitoa(num);
+	if ((str = ft_uitoa(num)) == NULL)
+		return (-1);
 	return (print_number(str, flag, 0));
 }
 

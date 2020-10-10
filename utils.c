@@ -6,7 +6,7 @@
 /*   By: yura <yura@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/23 23:09:53 by yura              #+#    #+#             */
-/*   Updated: 2020/09/30 21:50:57 by yura             ###   ########.fr       */
+/*   Updated: 2020/10/10 11:05:51 by yura             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,6 @@ void			put_str_repeat(char c, int cnt)
 {
 	while (cnt-- > 0)
 		ft_putchar_fd(c, 1);
-}
-
-char			*char_repeat_join(char c, int repeat, char *str)
-{
-	char	*buf;
-	int		i;
-
-	if (!(buf = (char*)malloc(sizeof(char) * (repeat + ft_strlen(str) + 1))))
-		return (NULL);
-	i = 0;
-	ft_memset(buf, c, repeat);
-	ft_strlcpy(buf + repeat, str, ft_strlen(str) + 1);
-	return (buf);
 }
 
 char			*ft_uitoa(unsigned int n)

@@ -6,20 +6,11 @@
 /*   By: yura <yura@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 20:45:48 by yura              #+#    #+#             */
-/*   Updated: 2020/09/30 21:41:06 by yura             ###   ########.fr       */
+/*   Updated: 2020/10/10 11:05:23 by yura             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static char	*free_swap(char *src, char *fr, char **dest)
-{
-	free(fr);
-	if (src == NULL)
-		return (NULL);
-	*dest = src;
-	return (*dest);
-}
 
 static int	print_number2(char *str, t_flag *flag, int minus)
 {

@@ -57,15 +57,21 @@ int	print_p(va_list *args, t_flag *flag)
 	num = (size_t)va_arg(*args, void *);
 	temp = (num == 0 && flag->precision == 0)
 			? ft_strdup("") : ft_utohex(num, 0);
+	if (temp == NULL)
+		return (-1);
 	len = ft_strlen(temp);
 	if (flag->precision > len)
 	{
 		str = char_repeat_join('0', flag->precision - len, temp);
 		free(temp);
+		if (str == NULL)
+			return (-1);
 		temp = str;
 	}
 	str = ft_strjoin("0x", temp);
 	free(temp);
+	if (str == NULL)
+		return (-1);
 	cnt = print_string(str, flag);
 	free(str);
 	return (cnt);
