@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void	parse_format(const char **src, va_list *args, t_flag *flag)
+void		parse_format(const char **src, va_list *args, t_flag *flag)
 {
 	while (*src && ft_strchr("-0", **src))
 	{
@@ -51,7 +51,7 @@ static int	printf_atoi(const char **src)
 	return (num * minus);
 }
 
-void	parse_precision(const char **src, va_list *args, t_flag *flag)
+void		parse_precision(const char **src, va_list *args, t_flag *flag)
 {
 	int	precision;
 
