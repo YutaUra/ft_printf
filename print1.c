@@ -6,7 +6,7 @@
 /*   By: yura <yura@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 20:17:06 by yura              #+#    #+#             */
-/*   Updated: 2020/09/30 21:48:18 by yura             ###   ########.fr       */
+/*   Updated: 2020/10/10 11:11:25 by yura             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int	print_x(va_list *args, t_flag *flag)
 	char	*str;
 
 	num = va_arg(*args, unsigned int);
-	str = ft_utohex(num, flag->conversion == 'X' ? 1 : 0);
+	if ((str = ft_utohex(num, flag->conversion == 'X' ? 1 : 0)) == NULL)
+		return (-1);
 	return (print_number(str, flag, 0));
 }
