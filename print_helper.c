@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static char *free_swap(char *src, char *fr, char **dest)
+static char	*free_swap(char *src, char *fr, char **dest)
 {
 	free(fr);
 	if (src == NULL)
