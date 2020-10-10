@@ -6,7 +6,7 @@
 /*   By: yura <yura@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 20:17:06 by yura              #+#    #+#             */
-/*   Updated: 2020/10/10 11:09:56 by yura             ###   ########.fr       */
+/*   Updated: 2020/10/10 11:10:43 by yura             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	print_p(va_list *args, t_flag *flag)
 	if (flag->precision > len)
 	{
 		if (free_swap(char_repeat_join('0',
-			 flag->precision - len, str), str, &str) == NULL)
+				flag->precision - len, str), str, &str) == NULL)
 			return (-1);
 	}
 	if (free_swap(ft_strjoin("0x", str), str, &str) == NULL)
