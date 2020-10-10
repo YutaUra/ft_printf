@@ -32,7 +32,7 @@ void	parse_format(const char **src, va_list *args, t_flag *flag)
 		(*src)++;
 }
 
-static int printf_atoi(const char **src)
+static int	printf_atoi(const char **src)
 {
 	int num;
 	int minus;
