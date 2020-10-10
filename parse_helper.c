@@ -69,7 +69,7 @@ void		parse_precision(const char **src, va_list *args, t_flag *flag)
 	flag->precision = precision;
 }
 
-void	parse_min_width(const char **src, va_list *args, t_flag *flag)
+void		parse_min_width(const char **src, va_list *args, t_flag *flag)
 {
 	int	width;
 
