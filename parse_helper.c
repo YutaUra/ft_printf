@@ -32,6 +32,25 @@ void	parse_format(const char **src, va_list *args, t_flag *flag)
 		(*src)++;
 }
 
+static int printf_atoi(const char **src)
+{
+	int num;
+	int minus;
+
+	num = 0;
+	while (**src == ' ')
+		(*src)++;
+	minus = (**src == '-') ? -1 : 1;
+	if (minus == -1)
+		(*src)++;
+	while (ft_isdigit(**src))
+	{
+		num = num * 10 + (**src - '0');
+		(*src)++;
+	}
+	return (num * minus);
+}
+
 void	parse_precision(const char **src, va_list *args, t_flag *flag)
 {
 	int	precision;
@@ -39,21 +58,15 @@ void	parse_precision(const char **src, va_list *args, t_flag *flag)
 	(*src)++;
 	if (**src == '*')
 	{
-		(*src)++;
 		precision = va_arg(*args, int);
-		flag->precision = (precision >= 0 ? precision : -1);
-		return ;
-	}
-	while (**src == '0')
 		(*src)++;
-	if (ft_isdigit(**src))
-	{
-		precision = ft_atoi(*src);
 		flag->precision = (precision >= 0 ? precision : -1);
-		*src += count_digits(flag->precision, 10);
 		return ;
 	}
-	flag->precision = 0;
+	precision = printf_atoi(src);
+	if (precision < 0)
+		precision = -1;
+	flag->precision = precision;
 }
 
 void	parse_min_width(const char **src, va_list *args, t_flag *flag)
@@ -62,8 +75,8 @@ void	parse_min_width(const char **src, va_list *args, t_flag *flag)
 
 	if (**src == '*')
 	{
-		(*src)++;
 		width = va_arg(*args, int);
+		(*src)++;
 		if (width < 0)
 		{
 			flag->left_align = 1;
@@ -72,7 +85,11 @@ void	parse_min_width(const char **src, va_list *args, t_flag *flag)
 		flag->min_width = width;
 		return ;
 	}
-	flag->min_width = ft_atoi(*src);
-	*src += count_digits(flag->min_width, 10);
-	return ;
+	width = printf_atoi(src);
+	if (width < 0)
+	{
+		flag->left_align = 1;
+		width = width * -1;
+	}
+	flag->min_width = width;
 }
