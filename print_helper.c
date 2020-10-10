@@ -12,30 +12,34 @@
 
 #include "ft_printf.h"
 
+static char *free_swap(char *src, char *fr, char **dest)
+{
+	free(fr);
+	if (src == NULL)
+		return (NULL);
+	*dest = src;
+	return (*dest);
+}
+
 static int	print_number2(char *str, t_flag *flag, int minus)
 {
-	char	*temp;
 	int		cnt;
 
 	if (flag->zero_padding && flag->precision == -1
 		&& flag->min_width > (int)ft_strlen(str) + minus)
 	{
-		temp = char_repeat_join('0',
-			flag->min_width - (int)ft_strlen(str) - minus, str);
-		free(str);
-		if (temp == NULL)
+		if (free_swap(
+				char_repeat_join('0',
+					flag->min_width - (int)ft_strlen(str) - minus, str),
+				str, &str) == NULL)
 			return (-1);
-		str = temp;
 	}
 	else if (flag->zero_padding)
 		flag->zero_padding = 0;
 	if (minus)
 	{
-		temp = ft_strjoin("-", str);
-		free(str);
-		if (temp == NULL)
+		if (free_swap(ft_strjoin("-", str), str, &str) == NULL)
 			return (-1);
-		str = temp;
 	}
 	cnt = print_string(str, flag);
 	free(str);
@@ -44,8 +48,6 @@ static int	print_number2(char *str, t_flag *flag, int minus)
 
 int			print_number(char *str, t_flag *flag, int minus)
 {
-	char	*temp;
-
 	if (flag->precision == 0 && str[0] == '0')
 	{
 		free(str);
@@ -53,12 +55,11 @@ int			print_number(char *str, t_flag *flag, int minus)
 	}
 	if (flag->precision > (int)ft_strlen(str))
 	{
-		temp = char_repeat_join('0',
-			flag->precision - (int)ft_strlen(str), str);
-		free(str);
-		if (temp == NULL)
+		if (free_swap(
+				char_repeat_join('0',
+					flag->precision - (int)ft_strlen(str), str),
+				str, &str) == NULL)
 			return (-1);
-		str = temp;
 	}
 	if (flag->zero_padding && flag->precision != -1
 		&& flag->min_width > (int)ft_strlen(str))
