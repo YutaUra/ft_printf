@@ -39,9 +39,15 @@ int	print_s(va_list *args, t_flag *flag)
 	if (!str)
 		str = "(null)";
 	if (0 <= flag->precision && flag->precision < (int)ft_strlen(str))
-		str = ft_substr(str, 0, flag->precision);
+	{
+		if ((str = ft_substr(str, 0, flag->precision)) == NULL)
+			return (-1);
+	}
 	else
-		str = ft_strdup(str);
+	{
+		if ((str = ft_strdup(str)) == NULL)
+			return (-1);
+	}
 	cnt = print_string(str, flag);
 	free(str);
 	return (cnt);

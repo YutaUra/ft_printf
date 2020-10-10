@@ -113,6 +113,7 @@
 static int	ft_printf_main(const char *src, t_flag *flag, va_list *args)
 {
 	int	cnt;
+	int temp;
 
 	cnt = 0;
 	while (*src)
@@ -123,8 +124,11 @@ static int	ft_printf_main(const char *src, t_flag *flag, va_list *args)
 			src++;
 			parse_format(&src, args, flag);
 			if (flag->conversion == '\0')
-				return (cnt);
-			cnt += print_value(args, flag);
+				return (-1);
+			temp = print_value(args, flag);
+			if (temp == -1)
+				return (-1);
+			cnt += temp;
 		}
 		else
 		{

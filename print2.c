@@ -28,7 +28,7 @@ int	print_value(va_list *args, t_flag *flag)
 		return (print_x(args, flag));
 	if (flag->conversion == '%')
 		return (print_modulo(flag));
-	return (0);
+	return (-1);
 }
 
 int	print_modulo(t_flag *flag)
