@@ -6,7 +6,7 @@
 /*   By: yura <yura@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/23 20:40:38 by yura              #+#    #+#             */
-/*   Updated: 2020/10/10 11:06:24 by yura             ###   ########.fr       */
+/*   Updated: 2020/10/10 11:07:40 by yura             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ char			*ft_utohex(size_t nb, int upper);
 **  string_utils.c
 */
 
-char	*free_swap(char *src, char *fr, char **dest);
-char	*char_repeat_join(char c, int repeat, char *str);
+char			*free_swap(char *src, char *fr, char **dest);
+char			*char_repeat_join(char c, int repeat, char *str);
 
 #endif

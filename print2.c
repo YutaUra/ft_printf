@@ -6,7 +6,7 @@
 /*   By: yura <yura@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 20:17:06 by yura              #+#    #+#             */
-/*   Updated: 2020/09/30 21:48:35 by yura             ###   ########.fr       */
+/*   Updated: 2020/10/10 11:09:56 by yura             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,26 +51,21 @@ int	print_p(va_list *args, t_flag *flag)
 	size_t	num;
 	ssize_t len;
 	char	*str;
-	char	*temp;
 	int		cnt;
 
 	num = (size_t)va_arg(*args, void *);
-	temp = (num == 0 && flag->precision == 0)
+	str = (num == 0 && flag->precision == 0)
 			? ft_strdup("") : ft_utohex(num, 0);
-	if (temp == NULL)
+	if (str == NULL)
 		return (-1);
-	len = ft_strlen(temp);
+	len = ft_strlen(str);
 	if (flag->precision > len)
 	{
-		str = char_repeat_join('0', flag->precision - len, temp);
-		free(temp);
-		if (str == NULL)
+		if (free_swap(char_repeat_join('0',
+			 flag->precision - len, str), str, &str) == NULL)
 			return (-1);
-		temp = str;
 	}
-	str = ft_strjoin("0x", temp);
-	free(temp);
-	if (str == NULL)
+	if (free_swap(ft_strjoin("0x", str), str, &str) == NULL)
 		return (-1);
 	cnt = print_string(str, flag);
 	free(str);
